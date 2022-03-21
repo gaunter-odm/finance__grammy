@@ -1,0 +1,1 @@
+export const name_and_price = /^(?<position>.+\s+?)?(?=.+)(?<price>\d{1,5}([,.]\d+)?)/
