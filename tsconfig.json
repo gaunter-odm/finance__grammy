@@ -2,9 +2,10 @@
   "extends": "@tsconfig/node16/tsconfig.json",
   "strict": false,
   "compilerOptions": {
-    "outDir": "dist",
+    "outDir": "dist"
   },
   "include": [
+    "index.ts",
     "src"
   ],
   "exclude": [

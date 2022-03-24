@@ -1,31 +1,36 @@
 import 'dotenv/config';
-import { token } from './src/config';
 import { Bot, session } from 'grammy';
+import { token } from './src/config';
 import { commandList } from './src/assets/commandList';
 import { name_and_price } from './src/regexp';
-import { rawStringToRecords } from './src/helpers/rawStringToRecords';
 import { CustomContext } from './src/types';
 import { setState } from './src/middlewares/setState';
-
-interface SessionData {
-  r?: number;
-}
-
+import { setUserData } from './src/middlewares/setUserData';
+import { router } from './src/routes/router';
+import { makeRecords } from './src/hears/makeRecords';
+import { cmdStart } from './src/commands/cmdStart';
+import { initialSession as initial } from './src/assets/initialSession';
+import { setPrintTable } from './src/middlewares/setPrintTable';
+import { setTimeZone } from './src/middlewares/setTimeZone';
 
 const bot = new Bot<CustomContext>(token);
 
 bot.api.setMyCommands(commandList);
 
-function initial(): SessionData {
-  return {};
-}
-
 bot.use(session({ initial }));
+
+bot.use(setUserData);
+bot.use(setTimeZone);
 bot.use(setState);
+bot.use(setPrintTable);
+bot.use(router);
 
-bot.hears(name_and_price, ctx => {
-  console.log(rawStringToRecords(ctx.msg.text));
-});
+bot.command('start', cmdStart);
 
+bot.hears(name_and_price, makeRecords);
 
-bot.start();
+bot.hears(/./, ctx => ctx.deleteMessage());
+bot.on('message:sticker', ctx => ctx.deleteMessage());
+bot.on('message:document', ctx => ctx.deleteMessage());
+
+bot.start().catch(console.log);
