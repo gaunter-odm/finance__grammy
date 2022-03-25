@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@grammyjs/menu": "^1.0.4",
     "@grammyjs/router": "^1.1.1",
     "dotenv": "^16.0.0",
     "easy-table": "^1.2.0",
