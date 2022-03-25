@@ -28,6 +28,7 @@ export interface SessionData {
   route: string;
   lastMessageTable: number | undefined;
   timezone: number | null;
+  countPositions: number;
 }
 
 interface State {
