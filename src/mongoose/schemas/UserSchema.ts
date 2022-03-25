@@ -2,6 +2,7 @@ import { Schema } from 'mongoose';
 import { Record, User as UModel, UserStatic } from '../../types';
 import { ISOData } from '../../helpers/ISOData';
 import { recordSchema } from './RecordSchema';
+import { ISOtoLocalDate } from '../../helpers/ISOtoLocalDate';
 
 export const userSchema = new Schema<UModel, UserStatic>({
   id: {
@@ -33,7 +34,9 @@ userSchema.static('pushRecords', async function(id: number, records: Record[] | 
       user.records.push(record);
     }
     await user.save();
-    return user.records;
+    const timezone = user.timezone ?? 0;
+    const { date: today } = ISOtoLocalDate(ISOData(), timezone);
+    return user.records.filter(({ date }) => ISOtoLocalDate(date, timezone).date === today);
   },
 );
 
