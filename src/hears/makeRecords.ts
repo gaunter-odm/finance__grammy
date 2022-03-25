@@ -9,6 +9,6 @@ export const makeRecords = async (ctx: CustomContext) => {
   const last = ctx.session.lastMessageTable;
   // @ts-ignore
   const { message_id } = await ctx.printOrEditTable(res, last);
-  setTimeout(() => ctx.deleteMessage(), 1000)
+  setTimeout(() => ctx.deleteMessage(), 500)
   if (!last && message_id) ctx.session.lastMessageTable = message_id;
 };
