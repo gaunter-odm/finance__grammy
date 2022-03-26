@@ -12,6 +12,7 @@ import { cmdStart } from './src/commands/cmdStart';
 import { initialSession as initial } from './src/assets/initialSession';
 import { setPrintTable } from './src/middlewares/setPrintTable';
 import { setTimeZone } from './src/middlewares/setTimeZone';
+import { cmdPrintToday } from './src/commands/cmdPrintToday';
 
 const bot = new Bot<CustomContext>(token);
 
@@ -26,6 +27,7 @@ bot.use(setPrintTable);
 bot.use(router);
 
 bot.command('start', cmdStart);
+bot.command('today', cmdPrintToday);
 
 bot.hears(name_and_price, makeRecords);
 
