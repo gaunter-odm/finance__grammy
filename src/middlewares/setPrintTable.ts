@@ -14,12 +14,14 @@ export const setPrintTable = (ctx: CustomContext, next: NextFunction): Promise<v
       t.cell('№', ++count, Table.number());
       t.cell('Time', time);
       t.cell('Position', record.position, positionPrinter);
-      t.cell('Price', +record.price.toFixed(2), Table.number());
+      t.cell('Price', +record.price.toFixed(2), Table.number(2));
       t.newRow();
     }
     ctx.session.countPositions = count;
 
-    t.total('Price');
+    t.total('Price', {
+      printer: sum => `${Number(sum).toFixed(2)}`,
+    });
 
     if (message_id) { // @ts-ignore
       return await ctx.api.editMessageText(ctx.user.id, message_id, `<pre>${t}</pre>`, { parse_mode: 'HTML' });
@@ -30,9 +32,13 @@ export const setPrintTable = (ctx: CustomContext, next: NextFunction): Promise<v
   return next();
 };
 
-function positionPrinter(val: string | undefined, width: number): string {
+function positionPrinter(position: string | undefined, width: number): string {
   let result = '';
-  while (!val && width--)
-    result += '.';
-  return val ?? result;
+  if (position && position.length >= 17) {
+    position = position.substring(0, 14) + '...';
+  } else {
+    while (width--)
+      result += '.';
+  }
+  return position ?? result;
 }
