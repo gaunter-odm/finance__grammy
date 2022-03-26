@@ -44,3 +44,16 @@ userSchema.static('getTimeZone', async function(id: number): Promise<number | un
   const user = await this.findOne({ id });
   return user?.timezone;
 });
+
+userSchema.static('getRecords', async function(id: number, date?: string): Promise<Record[] | undefined> {
+  const user = await this.findOne({ id });
+  if (date) {
+    const timezone = user?.timezone ?? 0;
+    return user?.records?.filter(record => {
+      const { date: rDate } = ISOtoLocalDate(record.date, timezone);
+      return rDate === date;
+    });
+  } else {
+    return user?.records;
+  }
+});
