@@ -29,6 +29,7 @@ export interface UserStatic extends Model<User> {
 export interface SessionData {
   route: string;
   lastMessageTable: number | undefined;
+  lastPurchaseDate: string | null;
   timezone: number | null;
   countPositions: number;
 }
