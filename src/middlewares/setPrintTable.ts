@@ -20,7 +20,7 @@ export const setPrintTable = (ctx: CustomContext, next: NextFunction): Promise<v
     ctx.session.countPositions = count;
 
     t.total('Price', {
-      printer: sum => `${Number(sum).toFixed(2)}`,
+      printer: (sum, w) => Table.padLeft(`${Number(sum).toFixed(2)}`, w),
     });
 
     if (message_id) { // @ts-ignore
