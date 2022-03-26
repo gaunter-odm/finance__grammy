@@ -22,6 +22,8 @@ export interface UserStatic extends Model<User> {
   pushRecords(id: number, records: Record[] | null): Promise<Record[] | void>;
 
   getTimeZone(id: number): Promise<number>;
+
+  getRecords(id: number, date?: string): Promise<Record[] | undefined>;
 }
 
 export interface SessionData {
