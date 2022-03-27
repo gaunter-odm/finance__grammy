@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { Bot, InlineKeyboard, session } from 'grammy';
+import { Bot, session } from 'grammy';
 import { token } from './src/config';
 import { commandList } from './src/assets/commandList';
 import { name_and_price } from './src/regexp';
