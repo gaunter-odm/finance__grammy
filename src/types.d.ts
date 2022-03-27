@@ -24,6 +24,8 @@ export interface UserStatic extends Model<User> {
   getTimeZone(id: number): Promise<number>;
 
   getRecords(id: number, date?: string): Promise<Record[] | undefined>;
+
+  getSumFromDate(id: number, date: string): Promise<number>;
 }
 
 export interface SessionData {

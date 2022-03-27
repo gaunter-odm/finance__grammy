@@ -57,3 +57,15 @@ userSchema.static('getRecords', async function(id: number, date?: string): Promi
     return user?.records;
   }
 });
+
+
+userSchema.static('getSumFromDate', async function(id: number, date: string): Promise<number> {
+  let sum = 0;
+  const user = await this.findOne({ id });
+  user?.records.forEach(record => {
+    if (ISOtoLocalDate(record.date, user.timezone ?? 0)?.date === date) {
+      sum += record.price;
+    }
+  });
+  return sum;
+});
