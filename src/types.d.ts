@@ -1,5 +1,5 @@
 import { Context, SessionFlavor } from 'grammy';
-import { Model } from 'mongoose';
+import { Model, Types } from 'mongoose';
 
 export interface Record {
   date: string,
@@ -16,6 +16,11 @@ export interface User {
   created_at: string,
   timezone: number,
   records: Record[] | [],
+}
+
+export interface Magik {
+  user: Types.ObjectId,
+  magik: string
 }
 
 export interface UserStatic extends Model<User> {
