@@ -14,6 +14,7 @@ import { setTimeZone } from './src/middlewares/setTimeZone';
 import { cmdPrintToday } from './src/commands/cmdPrintToday';
 import { makeRecords } from './src/hears/makeRecords/makeRecords';
 import { hidePrevDay } from './src/hears/makeRecords/hidePrevDay';
+import { cmdAuth } from './src/commands/cmdAuth';
 
 const bot = new Bot<CustomContext>(token);
 
