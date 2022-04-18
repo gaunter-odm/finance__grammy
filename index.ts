@@ -37,3 +37,4 @@ bot.hears(name_and_price, hidePrevDay, makeRecords);
 bot.on('message', ctx => ctx.deleteMessage());
 
 bot.start().catch(console.log);
+bot.catch(error => console.log(error));
