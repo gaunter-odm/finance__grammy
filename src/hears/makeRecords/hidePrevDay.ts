@@ -9,7 +9,7 @@ export const hidePrevDay = async (ctx: CustomContext, next: NextFunction): Promi
   const chat_id = ctx.user.id;
 
   if (message_id && prevDate && prevDate !== date) {
-    const sum = await User.getSumFromDate(chat_id, date);
+    const sum = await User.getSumFromDate(chat_id, prevDate);
     await ctx.api.editMessageText(chat_id, message_id, `${date} - ${sum}`);
     ctx.session.lastMessageTable = undefined;
   }
