@@ -8,7 +8,7 @@ const hidePrevDay = async (ctx, next) => {
     const message_id = ctx.session.lastMessageTable;
     const chat_id = ctx.user.id;
     if (message_id && prevDate && prevDate !== date) {
-        const sum = await mongoose_1.User.getSumFromDate(chat_id, date);
+        const sum = await mongoose_1.User.getSumFromDate(chat_id, prevDate);
         await ctx.api.editMessageText(chat_id, message_id, `${date} - ${sum}`);
         ctx.session.lastMessageTable = undefined;
     }
