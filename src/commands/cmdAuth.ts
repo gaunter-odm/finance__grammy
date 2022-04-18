@@ -28,7 +28,7 @@ export const cmdAuth = async (ctx: CustomContext) => {
       } catch (e) {
         reject(e);
       }
-    }, 5 * 1000);
+    }, 5 * 10000);
   }).catch(() => {
     console.log('Error deleting message, file: src/commands/cmdAuth.ts', new Date());
   });
