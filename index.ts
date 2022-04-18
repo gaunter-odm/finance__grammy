@@ -30,6 +30,7 @@ bot.use(router);
 
 bot.command('start', cmdStart);
 bot.command('today', cmdPrintToday);
+bot.command('auth', cmdAuth);
 
 bot.hears(name_and_price, hidePrevDay, makeRecords);
 
