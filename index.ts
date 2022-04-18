@@ -6,7 +6,6 @@ import { name_and_price } from './src/regexp';
 import { CustomContext } from './src/types';
 import { setState } from './src/middlewares/setState';
 import { setUserData } from './src/middlewares/setUserData';
-import { router } from './src/routes/router';
 import { cmdStart } from './src/commands/cmdStart';
 import { initialSession as initial } from './src/assets/initialSession';
 import { setPrintTable } from './src/middlewares/setPrintTable';
@@ -26,7 +25,6 @@ bot.use(setUserData);
 bot.use(setTimeZone);
 bot.use(setState);
 bot.use(setPrintTable);
-bot.use(router);
 
 bot.command('start', cmdStart);
 bot.command('today', cmdPrintToday);
