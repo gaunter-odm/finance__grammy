@@ -15,7 +15,7 @@ export const cmdAuth = async (ctx: CustomContext) => {
 
   const { magik } = magikLink;
 
-  const { message_id } = await ctx.reply('Ссылка дял авторизации действительна 5 минут', {
+  const { message_id } = await ctx.reply('Ссылка для авторизации действительна 5 минут', {
     reply_markup: new InlineKeyboard()
       .url('Авторизироваться', `www.google.com/${magik}`),
   });
